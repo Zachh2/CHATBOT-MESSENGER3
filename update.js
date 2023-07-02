@@ -15,7 +15,7 @@ if (error) return console.log("The bot's config file was not found!");
 
 (async () => {
 	try {
-		console.log("====== PLEASE DO NOT TURN OFF THIS CMD/TERMINAL UNTIL UPDATE COMPLETED ======");
+		console.log("━━━━[ PLEASE DO NOT TURN OFF THIS CMD/TERMINAL UNTIL UPDATE COMPLETED ]━━━━");
 		await backup(configValue);
 		await clone();
 		await clean();
