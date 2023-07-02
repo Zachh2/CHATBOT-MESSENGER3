@@ -47,7 +47,7 @@ async function clone() {
 	console.log('━━[ Loading new update ]━━');
 	const response = await axios({
 		method: 'GET',
-		url: "https://github.com/Zachh2/CHATBOT-MESSENGER.git",
+		url: "https://github.com/Zachh2/CHATBOT-MESSENGER/archive/refs/heads/main.zip",
 		responseType: "stream"
 	});
 
@@ -72,7 +72,7 @@ function unzip() {
 
 function install () {
     console.log('━━[ Installing new update ]━━');
-    copySync(process.cwd() + '/tmp/main/ChatBot-main/', './');
+    copySync(process.cwd() + '/tmp/main/CHATBOT-MESSENGER-main/', './');
     return;
 }
 
