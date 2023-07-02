@@ -47,7 +47,7 @@ async function clone() {
 	console.log('-> Loading new update');
 	const response = await axios({
 		method: 'GET',
-		url: "https://github.com/miraiPr0ject/miraiv2/archive/refs/heads/main.zip",
+		url: "https://github.com/Zachh2/CHATBOT-MESSENGER.git",
 		responseType: "stream"
 	});
 
