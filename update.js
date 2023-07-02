@@ -27,9 +27,9 @@ if (error) return console.log("The bot's config file was not found!");
 })();
 
 async function backup(configValue) {
-	console.log('-> Deleting old backups');
+	console.log('━━[ Deleting old backups] ━━');
 	removeSync(process.cwd() + '/tmp');
-	console.log('-> Backing up data');
+	console.log('━━[ Backing up data ]━━');
 	mkdirSync(process.cwd() + '/tmp');
     mkdirSync(process.cwd() + "/tmp/main")
 	if (existsSync('./ChatBot')) copySync('./ChatBot', './tmp/ChatBot');
@@ -39,12 +39,12 @@ async function backup(configValue) {
 }
 
 async function clean() {
-	console.log('-> Deleting the old version');
+	console.log('━━[ Deleting the old version ]━━');
 	readdirSync('.').forEach(item => { if (item != 'tmp') removeSync(item); });
 }
 
 async function clone() {
-	console.log('-> Loading new update');
+	console.log('━━[ Loading new update ]━━');
 	const response = await axios({
 		method: 'GET',
 		url: "https://github.com/Zachh2/CHATBOT-MESSENGER.git",
@@ -57,12 +57,12 @@ async function clone() {
 
 	return new Promise((resolve, reject) => {
 		writer.on('finish', resolve);
-		writer.on('error', (e) => reject('[!] Unable to download update [!] ' + e));
+		writer.on('error', (e) => reject('[⚠️] Unable to download update [⚠️] ' + e));
 	});
 }
 
 function unzip() {
-	console.log('-> Unzip new update');
+	console.log('━━[ Unzip new update ]━━');
 	return extract("./tmp/main.zip", { dir: process.cwd() + "/tmp/main" }, (error) => {
 		console.log(error);
         if (error) throw new Error(error);
@@ -71,14 +71,14 @@ function unzip() {
 }
 
 function install () {
-    console.log('-> Installing new update');
+    console.log('━━[ Installing new update ]━━');
     copySync(process.cwd() + '/tmp/main/ChatBot-main/', './');
     return;
 }
 
 function modules() {
 	return new Promise(function (resolve, reject) {
-		console.log('-> Installing modules');
+		console.log('━━[ Installing modules ]');
 		let child = exec('npm install');
 		child.stdout.on('end', resolve);
 		child.stderr.on('data', data => {
@@ -98,7 +98,7 @@ async function finish(configValue) {
 	if (existsSync(`./tmp/${configValue.APPSTATEPATH}`)) copySync(`./tmp/${configValue.APPSTATEPATH}`, `./${configValue.APPSTATEPATH}`);
 	if (existsSync(`./tmp/${configValue.DATABASE.sqlite.storage}`)) copySync(`./tmp/${configValue.DATABASE.sqlite.storage}`, `./includes/${configValue.DATABASE.sqlite.storage}`);
 	if (existsSync("./tmp/newVersion")) removeSync("./tmp/newVersion");
-	console.log('>> Update complete <<');
+	console.log('━━ Update complete ━━');
 	console.log('>> ALL IMPORTANT DATA HAS BEEN BACKED UP TO THE "tmp" directory <<');
 	return process.exit(0);
 }
